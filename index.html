@@ -1,19 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerald Hart | Musical Theatre Artist</title>
+    <style>
+        /* Global Styles & Variables */
+        :root {
+            --primary-color: #0f342e; /* Deep Emerald Green */
+            --accent-color: #d4af37; /* Theatrical Gold */
+            --text-dark: #222222;
+            --text-light: #ffffff;
+            --bg-light: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav .logo {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 52, 46, 0.8), rgba(15, 52, 46, 0.9)), url('https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #e5c158;
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 0.5rem auto 0;
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .headshot-container img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border: 4px solid #fff;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .resume-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .resume-category h3 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .role {
+            font-weight: bold;
+        }
+
+        /* Media Section */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .media-item {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .media-caption {
+            padding: 1rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        footer p a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav ul li {
+                margin: 0 1rem;
+            }
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            th, td {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>
-    Hello World!
-  </h1>
 
-  <p>
-    Here is a paragraph.
-  </p>
-  
-  <p>
-    And another!
-  </p>
+    <nav>
+        <div class="logo">Emerald Hart</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#media">Media</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Emerald Hart</h1>
+        <p>Actor | Singer | Dancer</p>
+        <a href="#contact" class="btn">Book Emerald</a>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="headshot-container">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Emerald Hart Headshot">
+            </div>
+            <div class="about-text">
+                <p>Welcome! I am Emerald Hart, a passionate musical theatre artist dedicated to bringing dynamic characters and powerful stories to life on stage. With a strong foundation in classical and contemporary musical theatre, I blend vocal precision, stylized dance, and deep emotional truth in every performance.</p>
+                <p>Based out of [City Name], I have had the privilege of performing in various regional productions, workshops, and showcases. When I'm not on stage, you can find me practicing piano, teaching youth theatre, or exploring new creative collaborations.</p>
+                <p><strong>Vocal Range:</strong> Mezzo-Soprano / Belter (F3 - C6)</p>
+                <p><strong>Height:</strong> 5'6"</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <h2>Performance Credits</h2>
+        <div class="resume-section">
+            
+            <div class="resume-category">
+                <h3>Theatre</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Show</th>
+                            <th>Role</th>
+                            <th>Theatre / Production Co.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>*Wicked*</td>
+                            <td class="role">Elphaba</td>
+                            <td>Emerald City Playhouse</td>
+                        </tr>
+                        <tr>
+                            <td>*Chicago*</td>
+                            <td class="role">Roxie Hart</td>
+                            <td>Grand Arts Theatre</td>
+                        </tr>
+                        <tr>
+                            <td>*Into the Woods*</td>
+                            <td class="role">Cinderella</td>
+                            <td>Regional Stage Co.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="resume-category">
+                <h3>Training</h3>
+                <p><strong>B.F.A. in Musical Theatre</strong> – [University Name]</p>
+                <p><strong>Vocal Training:</strong> [Coach Name] (Classical, Belting)</p>
+                <p><strong>Dance Training:</strong> [Studio Name] (Jazz, Ballet, Tap)</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="emerald-hart-resume.pdf" target="_blank" class="btn">Download Full PDF Resume</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="media">
+        <h2>Media & Reels</h2>
+        <div class="media-grid">
+            
+            <div class="media-item">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="media-caption">Vocal Reel - Musical Theatre</div>
+            </div>
+
+            <div class="media-item">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="media-caption">Dance Reel / Choreography</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact & Representation</h2>
+        <p>For bookings, auditions, or representation inquiries, please reach out via email or through her agency.</p>
+        <p><strong>Email:</strong> <a href="mailto:emeraldhart@example.com" style="color: var(--primary-color); font-weight: bold;">emeraldhart@example.com</a></p>
+        <p><strong>Representation:</strong> [Agency Name / Agent Contact info if applicable]</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Emerald Hart. All Rights Reserved.</p>
+        <p>Designed with ❤️ by her favorite person.</p>
+    </footer>
+
 </body>
 </html>
